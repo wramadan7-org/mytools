@@ -11,7 +11,7 @@ const readFile = () => {
   file.forEach((valueOfFile, indexFile, arrayFile) => {
     let data = {
       dateTime: '',
-      logingLevel: '',
+      loggingLevel: '',
       loggingComponent: '',
       message: '',
     };
@@ -21,9 +21,11 @@ const readFile = () => {
     // Create content to array and get every index of arrayFile then split when have space
     const splitingSpace = arrayFile[indexFile].split(/\s+/);
 
+    data.dateTime = `${splitingSpace[0]} ${splitingSpace[1]}`;
+    data.loggingLevel = splitingSpace[2];
+    
 
-
-    console.log('splitingSpace', splitingSpace);
+    console.log('data', data);
   });
 };
 
