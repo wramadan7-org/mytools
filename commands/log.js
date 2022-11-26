@@ -12,9 +12,11 @@ const readAndConvertToJson = () => {
     const data = {
       dateTime: '',
       loggingLevel: '',
+      loggingCode: '',
       loggingComponent: '',
       message: '',
     };
+    let loggingCode = '';
     let loggingComponent = '';
     let message = '';
 
@@ -23,6 +25,8 @@ const readAndConvertToJson = () => {
 
     // Check array index 3 is start with [ or not
     if (splitingSpace[3].startsWith('[')) {
+      // Set logging code
+      loggingCode = splitingSpace[3];
       // Set logging component from array splitingSpace index 4
       loggingComponent = splitingSpace[4];
       // Set message
@@ -38,6 +42,7 @@ const readAndConvertToJson = () => {
 
     // Set value from spliting to on key
     data.dateTime = `${splitingSpace[0]} ${splitingSpace[1]}`;
+    data.loggingCode = loggingCode;
     data.loggingLevel = splitingSpace[2];
     data.loggingComponent = loggingComponent;
     data.message = message;
@@ -46,8 +51,18 @@ const readAndConvertToJson = () => {
   });
 
   console.log(arrayDefault);
+  return arrayDefault;
+};
+
+const writeFileToJson = () => {
+  const readFileJson = readAndConvertToJson();
+
+  const json = JSON.stringify(readFileJson);
+
+  fs.writeFileSync('../files/json/errorlog.json', json);
 };
 
 export default {
   readAndConvertToJson,
+  writeFileToJson,
 };
