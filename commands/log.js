@@ -47,7 +47,7 @@ const readAndConvertToJson = () => {
     }
 
     // Set value from spliting to on key
-    data.dateTime = `${splitingSpace[0]} ${splitingSpace[1]}`;
+    data.dateTime = `${splitingSpace[0]} ${splitingSpace[1].slice(0, -1)}`;
     data.loggingCode = loggingCode;
     data.loggingLevel = splitingSpace[2];
     data.loggingComponent = loggingComponent;
@@ -56,8 +56,25 @@ const readAndConvertToJson = () => {
     arrayDefault.push(data);
   });
 
-  console.log(JSON.stringify(arrayDefault, null, 2));
   return JSON.stringify(arrayDefault, null, 2);
+};
+
+const readAndConvertToText = () => {
+  const readJson = readAndConvertToJson();
+  const parseJson = JSON.parse(readJson);
+
+  const arrayDefault = [];
+
+  parseJson.forEach((value, index, array) => {
+    const getValueObject = Object.values(value);
+    const splicingValue = getValueObject.splice('').join(' ');
+    console.log(splicingValue[0]);
+    arrayDefault.push(splicingValue);
+  });
+
+  // Enter the paragraph
+
+  console.log(arrayDefault.toString())
 };
 
 /**
@@ -85,14 +102,14 @@ const isFileExists = async (file) => {
 const writeFileToJson = () => {
   const readFileJson = readAndConvertToJson();
 
-  const writeFile = fs.writeFileSync(`${defaultFileJson}/errorLog.json`, readFileJson);
+  fs.writeFileSync(`${defaultFileJson}/errorLog.json`, readFileJson);
 
-  console.log(writeFile);
-  return writeFile;
+  return readFileJson;
 };
 
 export default {
   readAndConvertToJson,
+  readAndConvertToText,
   writeFileToJson,
   isFileExists,
 };
