@@ -1,4 +1,4 @@
 node_modules
 package-lock.json
-files/jsons/*
-files/texts/*
+src/files/jsons/*
+src/files/texts/*
