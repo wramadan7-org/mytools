@@ -20,11 +20,15 @@ const readFile = () => {
 
     // Create content to array and get every index of arrayFile then split when have space
     const splitingSpace = arrayFile[indexFile].split(/\s+/);
-    console.log(splitingSpace)
+    console.log(splitingSpace);
+
+    // Set message
+    // Choose index start use splice then join with the next element
+    message = splitingSpace.splice(3).join(' ');
     // Set value from spliting to on key
     data.dateTime = `${splitingSpace[0]} ${splitingSpace[1]}`;
     data.loggingLevel = splitingSpace[2];
-    
+    data.message = message;
 
     console.log('data', data);
   });
