@@ -12,6 +12,7 @@
     },
     "rules": {
         "import/extensions": "off",
-        "prefer-destructuring": "off"
+        "prefer-destructuring": "off",
+        "no-console": "off"
     }
 }
