@@ -2,7 +2,7 @@ import fs from 'fs';
 
 const defaultFile = 'C:/Windows/Panther/setuperr.log';
 
-const readFile = () => {
+const converdJson = () => {
   // Read file and convert to string then slice per \n
   const file = fs.readFileSync(defaultFile).toString().trim().split('\n');
 
@@ -49,5 +49,5 @@ const readFile = () => {
 };
 
 export default {
-  readFile,
+  converdJson,
 };
