@@ -1,7 +1,12 @@
 import fs from 'fs';
 
 const defaultFile = 'C:/Windows/Panther/setuperr.log';
+const defaultFileJson = './files/jsons/errorLog.json';
 
+/**
+ * Read and conert file .log and convert to JSON
+ * @returns Json
+ */
 const readAndConvertToJson = () => {
   // Read file and convert to string then slice per \n
   const file = fs.readFileSync(defaultFile).toString().trim().split('\n');
@@ -50,19 +55,43 @@ const readAndConvertToJson = () => {
     arrayDefault.push(data);
   });
 
-  console.log(JSON.stringify(arrayDefault));
-  return arrayDefault;
+  console.log(JSON.stringify(arrayDefault, null, 2));
+  return JSON.stringify(arrayDefault, null, 2);
 };
 
+/**
+ * Check file exists or not
+ * @param { String } file
+ * @returns Boolean
+ */
+const isFileExists = async (file) => {
+  try {
+    if (fs.existsSync(file)) {
+      return true;
+    }
+
+    return false;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+/**
+ * Write file json
+ * @returns Json
+ */
 const writeFileToJson = () => {
   const readFileJson = readAndConvertToJson();
 
-  const json = JSON.stringify(readFileJson);
+  const writeFile = fs.writeFileSync(defaultFileJson, readFileJson);
 
-  fs.writeFileSync('../files/json/errorlog.json', json);
+  console.log(writeFile);
+  return writeFile;
 };
 
 export default {
   readAndConvertToJson,
   writeFileToJson,
+  isFileExists,
 };
