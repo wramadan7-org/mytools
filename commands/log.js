@@ -20,7 +20,8 @@ const readFile = () => {
 
     // Create content to array and get every index of arrayFile then split when have space
     const splitingSpace = arrayFile[indexFile].split(/\s+/);
-
+    console.log(splitingSpace)
+    // Set value from spliting to on key
     data.dateTime = `${splitingSpace[0]} ${splitingSpace[1]}`;
     data.loggingLevel = splitingSpace[2];
     
