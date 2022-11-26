@@ -4,22 +4,43 @@
 import { program } from 'commander';
 import log from './commands/log.js';
 
-const { readAndConvertToJson } = log;
+const {
+  readAndConvertToJson,
+  readAndConvertToText,
+  writeFileToJson,
+} = log;
 
-const command = () => {
-  program
-    .command('type')
-    .alias('t')
-    .description('Output type')
-    .action(readAndConvertToJson);
-
-  program
-    .command('output')
-    .alias('o')
-    .description('Output file name')
-    .action();
-
-  program.parse();
+const inputType = {
+  json: 'json',
+  text: 'text',
 };
 
-command();
+function collect(value, previous) {
+  return previous.concat([value]);
+}
+
+program
+  .option('-t, --type <value>', 'repeatable value', collect, [])
+  .option('-o, --output <type>', 'repeatable value', collect, []);
+
+program.parse();
+
+const options = program.opts();
+
+switch (options.type[0]) {
+  case inputType.json:
+    console.log('Process to read file...');
+    console.log(readAndConvertToJson());
+    console.log('Success to read file...');
+    break;
+  case inputType.text:
+    console.log('Process to write file...');
+    console.log(readAndConvertToText());
+    console.log('Success to create file...');
+    break;
+  default:
+    console.log('Process to read file...');
+    console.log(readAndConvertToJson());
+    console.log('Success to read file...');
+    break;
+}
