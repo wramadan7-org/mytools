@@ -4,14 +4,14 @@
 import { program } from 'commander';
 import log from './commands/log.js';
 
-const { converdJson } = log;
+const { readAndConvertToJson } = log;
 
 const command = () => {
   program
     .command('type')
     .alias('t')
     .description('Output type')
-    .action(converdJson);
+    .action(readAndConvertToJson);
 
   program
     .command('output')
