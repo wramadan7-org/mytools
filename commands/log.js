@@ -1,7 +1,8 @@
 import fs from 'fs';
 
 const defaultFile = 'C:/Windows/Panther/setuperr.log';
-const defaultFileJson = './files/jsons/errorLog.json';
+const defaultFileJson = './files/jsons';
+const defaultFileText = './files/texts';
 
 /**
  * Read and conert file .log and convert to JSON
@@ -84,7 +85,7 @@ const isFileExists = async (file) => {
 const writeFileToJson = () => {
   const readFileJson = readAndConvertToJson();
 
-  const writeFile = fs.writeFileSync(defaultFileJson, readFileJson);
+  const writeFile = fs.writeFileSync(`${defaultFileJson}/errorLog.json`, readFileJson);
 
   console.log(writeFile);
   return writeFile;
