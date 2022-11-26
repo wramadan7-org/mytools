@@ -47,7 +47,7 @@ const readAndConvertToJson = () => {
     }
 
     // Set value from spliting to on key
-    data.dateTime = `${splitingSpace[0]} ${splitingSpace[1].slice(0, -1)}`;
+    data.dateTime = `${splitingSpace[0]} ${splitingSpace[1].slice(0, -1)}`; // Delete , in last character array index 1
     data.loggingCode = loggingCode;
     data.loggingLevel = splitingSpace[2];
     data.loggingComponent = loggingComponent;
@@ -65,16 +65,18 @@ const readAndConvertToText = () => {
 
   const arrayDefault = [];
 
-  parseJson.forEach((value, index, array) => {
+  parseJson.forEach((value) => {
     const getValueObject = Object.values(value);
+    // Append new line in last index of element array
+    getValueObject.push('\n');
     const splicingValue = getValueObject.splice('').join(' ');
-    console.log(splicingValue[0]);
     arrayDefault.push(splicingValue);
   });
 
-  // Enter the paragraph
+  // Change to string and split with , then join it again
+  const text = arrayDefault.toString().split(',').join('');
 
-  console.log(arrayDefault.toString())
+  return text;
 };
 
 /**
