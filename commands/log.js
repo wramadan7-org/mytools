@@ -50,7 +50,7 @@ const readAndConvertToJson = () => {
     arrayDefault.push(data);
   });
 
-  console.log(arrayDefault);
+  console.log(JSON.stringify(arrayDefault));
   return arrayDefault;
 };
 
