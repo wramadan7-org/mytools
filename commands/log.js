@@ -6,7 +6,7 @@ const readFile = () => {
   // Read file and convert to string then slice per \n
   const file = fs.readFileSync(defaultFile).toString().trim().split('\n');
 
-  let arrayDefault = [];
+  const arrayDefault = [];
 
   file.forEach((valueOfFile, indexFile, arrayFile) => {
     const data = {
@@ -44,6 +44,8 @@ const readFile = () => {
 
     arrayDefault.push(data);
   });
+
+  console.log(arrayDefault);
 };
 
 export default {
