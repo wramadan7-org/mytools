@@ -42,7 +42,7 @@ const readFile = () => {
     data.loggingComponent = loggingComponent;
     data.message = message;
 
-    console.log('data', data);
+    arrayDefault.push(data);
   });
 };
 
