@@ -32,7 +32,7 @@ program.parse();
 const options = program.opts();
 
 // Flag -t
-if ((options.type && options.type.length > 0) && (!options.output && options.output.length <= 0)) {
+if (options.type && options.type.length > 0) {
   switch (options.type[0]) {
     case inputType.json:
       console.log('Process to read file as a json... \n');
