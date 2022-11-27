@@ -2,7 +2,7 @@
 // Code above to make sure that CLI tool work correctly
 
 import { program } from 'commander';
-import log from '../commands/log.js';
+import log from './commands/log.js';
 
 const {
   readAndConvertToJson,
