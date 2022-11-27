@@ -2,10 +2,10 @@
   "name": "mytools",
   "version": "1.0.0",
   "description": "Create CLI convert to JSON or Plaintext from file use NodeJs",
-  "main": "bin/index.js",
+  "main": "index.js",
   "type": "module",
   "bin": {
-    "mytools": "./bin/index.js"
+    "mytools": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
